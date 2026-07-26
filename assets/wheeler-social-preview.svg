@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#101114"/>
+<circle cx="1010" cy="20" r="390" fill="#e33a2e" opacity=".16"/>
+<g transform="translate(685 160)">
+<path d="M0 196h340l80 78H0z" fill="#25272d"/>
+<path d="M46 94h173l70 102H24z" fill="#e33a2e"/>
+<path d="M73 116h113l61 75H47z" fill="#9fb0ba"/>
+<path d="M270 147h177v36H293z" fill="#555861"/>
+<path d="M378 0h28v153h-28zM390 0h127v25H390z" fill="#e33a2e"/>
+<circle cx="98" cy="274" r="48" fill="#101114" stroke="#787b84" stroke-width="14"/>
+<circle cx="327" cy="274" r="48" fill="#101114" stroke="#787b84" stroke-width="14"/>
+</g>
+<text x="75" y="250" fill="#ff5a3d" font-size="46" font-family="Arial, sans-serif" font-weight="800" letter-spacing="7">WHEELER</text>
+<text x="75" y="355" fill="#ffffff" font-size="92" font-family="Arial, sans-serif" font-weight="900">WRECKER SERVICE</text>
+<text x="79" y="415" fill="#aeb1b8" font-size="27" font-family="Arial, sans-serif">Towing &amp; roadside assistance in Bessemer, Alabama</text>
+<rect x="76" y="464" width="365" height="70" rx="9" fill="#e33a2e"/>
+<text x="258" y="510" fill="#fff" text-anchor="middle" font-size="31" font-family="Arial, sans-serif" font-weight="800">(205) 424-3200</text>
+</svg>
