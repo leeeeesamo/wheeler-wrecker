@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Disallow: /
 
-Sitemap: https://www.wheelerwreckerservice.com/sitemap.xml
+# Pre-launch staging only. Replace with Allow: / and final production sitemap after domain setup.
