@@ -1187,8 +1187,8 @@ button { font: inherit; }
 .footer-logo {
   display: block;
   width: auto;
-  height: 64px;
-  max-width: 320px;
+  height: 88px;
+  max-width: 140px;
   object-fit: contain;
 }
 
@@ -1206,7 +1206,7 @@ button { font: inherit; }
   }
 
   .footer-logo {
-    height: 54px;
-    max-width: 270px;
+    height: 72px;
+    max-width: 112px;
   }
 }
