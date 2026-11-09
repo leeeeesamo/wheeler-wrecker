@@ -1,4 +1,10 @@
 User-agent: *
 Disallow: /
 
-# Pre-launch staging only. Replace with Allow: / and final production sitemap after domain setup.
+# PRE-LAUNCH SAFEGUARD: site is intentionally blocked from indexing until the
+# production domain (https://wheelertowing.com) is approved and deployed.
+# At launch replace with:
+#   User-agent: *
+#   Allow: /
+#   Sitemap: https://wheelertowing.com/sitemap.xml
+# Note: admin/ is always noindex,nofollow via its page meta tag.

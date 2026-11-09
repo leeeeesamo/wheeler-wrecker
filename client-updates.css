@@ -14,7 +14,7 @@ html { scroll-padding-top: 136px; }
 .site-nav > a:not(.button) { padding-block: 23px; white-space: nowrap; }
 .site-nav > a[aria-current="page"]:not(.button) { color: #fff; }
 .site-nav > a[aria-current="page"]:not(.button)::after { right: 0; }
-.header-logo { max-width: 270px; height: 51px; }
+.header-logo { width: auto; height: 68px; max-width: 118px; object-fit: contain; }
 .site-nav .button-small { flex-direction: column; gap: 3px; padding: 7px 12px; white-space: nowrap; }
 .contact-hint { display: inline-block; color: #b9bbc2; font-size: 12px; }
 .hero-actions .button { text-align: center; }
@@ -114,7 +114,7 @@ html { scroll-padding-top: 136px; }
 .small-cta .button { min-height: 48px; }
 @media (max-width: 1160px) {
   .site-nav { gap: 12px; font-size: 12px; }
-  .header-logo { height: 46px; max-width: 238px; }
+  .header-logo { height: 58px; max-width: 100px; }
   .site-nav .button-small { padding-inline: 9px; }
 }
 @media (max-width: 1050px) {
@@ -138,7 +138,7 @@ html { scroll-padding-top: 136px; }
   .dispatch-phones a { white-space: nowrap; }
   .nav-wrap { min-height: 70px; }
   .site-nav { top: 107px; max-height: calc(100dvh - 107px); }
-  .header-logo { max-width: 225px; height: 43px; }
+  .header-logo { height: 50px; max-width: 86px; }
   .premium-hero { padding-top: 153px; }
   .premium-trust-row { gap: 13px; }
   .premium-trust-row strong { font-size: 20px; }
@@ -164,3 +164,54 @@ html { scroll-padding-top: 136px; }
   .hero-contact-alternate { font-size: 13px; }
 }
 @media (prefers-reduced-motion: reduce) { .site-nav, .story-service-card { transition: none; } }
+
+/* ---- Photo service cards (services overview) ---- */
+.service-photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; margin-top: 34px; }
+.service-photo-card { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; background: #14161b; border: 1px solid rgba(255,255,255,.08); box-shadow: 0 14px 34px rgba(0,0,0,.18); transition: transform .25s ease, box-shadow .25s ease; }
+.service-photo-card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(0,0,0,.28); }
+.service-photo-media { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; }
+.service-photo-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.service-photo-card:hover .service-photo-media img { transform: scale(1.04); }
+.service-photo-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,6,8,.15) 0%, rgba(5,6,8,.35) 45%, rgba(5,6,8,.88) 100%); }
+.service-photo-title { position: absolute; left: 18px; right: 18px; bottom: 14px; color: #fff; font-family: var(--display); font-size: clamp(19px, 1.6vw, 25px); text-transform: uppercase; line-height: 1.05; text-shadow: 0 2px 10px rgba(0,0,0,.55); }
+.service-photo-body { display: flex; flex-direction: column; flex: 1; padding: 18px 20px 20px; }
+.service-photo-body p { color: #c9cbd2; font-size: 14px; line-height: 1.55; margin: 0 0 14px; flex: 1; }
+.service-photo-links { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.service-photo-links .text-cta { color: #ff8f7a; }
+.service-photo-call { color: #ffd479; font-weight: 800; font-size: 13px; text-decoration: none; border: 1px solid rgba(255,212,121,.4); border-radius: 999px; padding: 6px 13px; white-space: nowrap; }
+.service-photo-call:hover { background: rgba(255,212,121,.12); }
+
+/* ---- Reviews landing (/reviews/) ---- */
+.review-hero { text-align: center; }
+.review-hero .review-logo { max-width: min(340px, 100%); height: auto; margin: 0 auto 22px; }
+.review-actions { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; margin-top: 30px; }
+.review-card { border: 1px solid #e4e3df; border-radius: 16px; padding: 28px; background: #fff; }
+.review-card h3 { font-family: var(--display); text-transform: uppercase; font-size: 24px; margin: 0 0 10px; }
+.review-card p { color: #585b64; }
+.review-card .button { margin-top: 14px; }
+.review-pending { border: 1px dashed #c9c5ba; border-radius: 14px; padding: 18px 22px; color: #6a6d75; background: #faf9f6; font-size: 14px; }
+.stars { color: #e8a13c; letter-spacing: 3px; font-size: 18px; }
+
+/* ---- QR / print marketing ---- */
+.qr-frame { display: flex; gap: 34px; align-items: center; flex-wrap: wrap; }
+.qr-frame img { width: 220px; height: 220px; image-rendering: pixelated; border-radius: 12px; }
+.qr-print-sheet { background: #fff; color: #16181d; border-radius: 18px; padding: 38px; max-width: 720px; margin: 0 auto; text-align: center; }
+.qr-print-sheet img.qr-big { width: min(320px, 70vw); height: auto; }
+
+@media (max-width: 1020px) { .service-photo-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 680px) {
+  .service-photo-grid { grid-template-columns: 1fr; }
+  .service-photo-media { aspect-ratio: 16 / 10; }
+  .review-actions { grid-template-columns: 1fr; }
+  .qr-frame { flex-direction: column; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-photo-card, .service-photo-media img { transition: none; }
+  .service-photo-card:hover { transform: none; }
+}
+
+/* ---- QA fixes (Nov 2026) ---- */
+.ribbon-grid > div { min-width: 0; }
+.ribbon-grid strong { overflow-wrap: anywhere; }
+body { overflow-x: clip; }
+@media (max-width: 480px) { .ribbon-grid strong { font-size: 20px; } }

@@ -41,3 +41,13 @@ They can be replaced later with Wheeler's official logo files without changing t
 
 This is a temporary concept identity for the sales mockup. Before a final production launch,
 confirm whether Wheeler already owns an official logo and obtain permission to use it.
+
+## Final logo (Nov 2026)
+
+- `wheeler-logo-final.png` — approved clean digital logo (from `wheeler-logo1.png`,
+  trimmed + optimized, transparent PNG). Used in header, footer, reviews page,
+  QR print artwork, and admin stub.
+- `wheeler-logo.jpg` / `wheeler-logo1.png` — client originals kept as backup.
+- Older `wheeler-logo*.png` concept files retained for reference; not referenced by pages.
+- Favicons regenerated from a gold "W" + red shadow badge (`tools/make_favicons.py`).
+- `wheeler-social-preview.png` regenerated with the final logo.
