@@ -41,15 +41,38 @@ form?.addEventListener("submit",event=>{
   window.location.href="mailto:"+target+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
 });
 
-// Homepage hero slideshow (Wheeler client photos)
-const heroSlides = document.querySelectorAll(".hero-slide");
-if (heroSlides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  let heroIndex = 0;
-  setInterval(() => {
-    heroSlides[heroIndex].classList.remove("active");
-    heroIndex = (heroIndex + 1) % heroSlides.length;
-    heroSlides[heroIndex].classList.add("active");
-  }, 6000);
+// Homepage truck slideshow: auto-rotate, arrows, dot navigation
+const slides = document.querySelectorAll(".slide-viewport .slide");
+const dots = document.querySelectorAll(".slide-dot");
+const slideViewport = document.querySelector(".slide-viewport");
+if (slides.length > 1) {
+  let slideIndex = 0;
+  let slideTimer = null;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function goToSlide(i) {
+    slideIndex = (i + slides.length) % slides.length;
+    slides.forEach((el, n) => el.classList.toggle("active", n === slideIndex));
+    dots.forEach((el, n) => {
+      el.classList.toggle("active", n === slideIndex);
+      el.setAttribute("aria-pressed", String(n === slideIndex));
+    });
+  }
+  function startSlideTimer() {
+    if (!reduceMotion && slideTimer === null) slideTimer = setInterval(() => goToSlide(slideIndex + 1), 6000);
+  }
+  function stopSlideTimer() {
+    if (slideTimer !== null) { clearInterval(slideTimer); slideTimer = null; }
+  }
+  document.querySelector(".slide-prev")?.addEventListener("click", () => { goToSlide(slideIndex - 1); startSlideTimer(); });
+  document.querySelector(".slide-next")?.addEventListener("click", () => { goToSlide(slideIndex + 1); startSlideTimer(); });
+  dots.forEach((dot, n) => dot.addEventListener("click", () => { goToSlide(n); startSlideTimer(); }));
+  slideViewport?.addEventListener("pointerenter", stopSlideTimer);
+  slideViewport?.addEventListener("pointerleave", startSlideTimer);
+  slideViewport?.addEventListener("focusin", stopSlideTimer);
+  slideViewport?.addEventListener("focusout", startSlideTimer);
+  dots.forEach(dot => dot.setAttribute("aria-pressed", "false"));
+  dots[0]?.setAttribute("aria-pressed", "true");
+  startSlideTimer();
 }
 
 // Rotate the primary dispatch number in the "Need help now" band.
