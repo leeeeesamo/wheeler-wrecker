@@ -367,3 +367,35 @@ body { font-size: 17px; }
     linear-gradient(90deg, rgba(8,9,11,.93) 0%, rgba(8,9,11,.74) 36%, rgba(8,9,11,.16) 70%, rgba(8,9,11,.38) 100%),
     linear-gradient(0deg, rgba(8,9,11,.84), transparent 48%, rgba(8,9,11,.10));
 }
+
+/* Hero focal-point pass: trucks are the star, text sits in a contained panel */
+.hero-media img {
+  filter: saturate(1) contrast(1.02) brightness(.96);
+}
+.hero-vignette {
+  background:
+    linear-gradient(90deg, rgba(8,9,11,.82) 0%, rgba(8,9,11,.55) 34%, rgba(8,9,11,.08) 68%, rgba(8,9,11,.30) 100%),
+    linear-gradient(0deg, rgba(8,9,11,.55), transparent 42%, rgba(8,9,11,.06));
+}
+.premium-hero-copy {
+  max-width: 780px;
+  padding: 38px 42px 34px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(10,11,14,.78), rgba(10,11,14,.55));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 26px 60px rgba(0,0,0,.35);
+}
+.premium-hero .hero-lead { color: #dfe1e6; }
+.hero-callout { background: rgba(10,11,14,.72); }
+@media (max-width: 900px) {
+  .premium-hero-copy { padding: 26px 22px; border-radius: 14px; }
+}
+@media (max-width: 720px) {
+  .premium-hero-copy {
+    padding: 20px 18px;
+    background: linear-gradient(135deg, rgba(10,11,14,.72), rgba(10,11,14,.5));
+  }
+  .premium-hero h1 { font-size: clamp(46px, 13vw, 64px); }
+}
