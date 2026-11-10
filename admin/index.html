@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Wheeler Admin — Review Dashboard</title>
+<style>
+  :root { --bg:#0b0d10; --panel:#14161b; --panel2:#1a1d24; --line:#2a2e37; --gold:#ffd479; --red:#e9432d; --txt:#e8e9ec; --mut:#9aa0ab; --green:#3fbf6f; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--bg); color:var(--txt); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px 64px; }
+  .brand { display:flex; align-items:center; gap:14px; margin-bottom:24px; }
+  .brand img { height:56px; width:auto; }
+  .brand small { color:var(--mut); }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px; }
+  .banner { border:1px solid var(--gold); background:rgba(255,212,121,.08); color:var(--gold); border-radius:12px; padding:14px 18px; margin-bottom:22px; font-size:14px; line-height:1.55; }
+  /* login */
+  .login-card { max-width: 420px; margin: 40px auto; }
+  .login-card h1 { font-size:24px; margin:0 0 6px; color:var(--gold); }
+  .login-card p { color:var(--mut); font-size:14px; }
+  label { display:block; font-size:12px; color:var(--mut); margin:14px 0 5px; text-transform:uppercase; letter-spacing:.6px; }
+  input { width:100%; padding:11px 13px; border-radius:8px; border:1px solid var(--line); background:#0d0f13; color:var(--txt); font-size:15px; }
+  input:focus { border-color:var(--gold); outline:2px solid rgba(255,212,121,.3); }
+  button { margin-top:16px; width:100%; padding:12px; border:0; border-radius:8px; background:var(--red); color:#fff; font-weight:700; font-size:15px; cursor:pointer; }
+  button:hover { filter:brightness(1.1); }
+  button:disabled { opacity:.6; cursor:wait; }
+  button.ghost { background:transparent; border:1px solid var(--line); color:var(--txt); }
+  button.small { width:auto; margin:0; padding:8px 14px; font-size:13px; border-radius:7px; }
+  button.approve { background:var(--green); }
+  button.reject { background:#7a2e22; }
+  .status-msg { margin-top:14px; font-size:14px; min-height:1.3em; }
+  .status-msg.err { color:var(--red); }
+  .status-msg.ok { color:var(--green); }
+  /* dashboard */
+  .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+  .topbar h1 { font-size:22px; margin:0; color:var(--gold); }
+  .who { color:var(--mut); font-size:13px; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-bottom:20px; }
+  .stat { background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:16px; text-align:center; }
+  .stat strong { display:block; font-size:30px; font-family:Georgia,serif; color:var(--gold); }
+  .stat span { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--mut); }
+  .stat.pending strong { color:#ffb35c; } .stat.approved strong { color:var(--green); } .stat.rejected strong { color:var(--red); }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .filters button { width:auto; margin:0; padding:8px 16px; font-size:13px; background:var(--panel2); border:1px solid var(--line); color:var(--mut); }
+  .filters button.active { background:var(--gold); color:#111; border-color:var(--gold); font-weight:800; }
+  .review { background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:18px; margin-bottom:14px; }
+  .review-head { display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:baseline; }
+  .review-name { font-weight:800; font-size:16px; }
+  .review-stars { color:var(--gold); letter-spacing:2px; font-size:15px; }
+  .review-loc { color:var(--mut); font-size:13px; }
+  .review-text { margin:12px 0; font-size:15px; line-height:1.6; white-space:pre-wrap; word-break:break-word; }
+  .review-meta { color:var(--mut); font-size:12.5px; }
+  .pill { display:inline-block; padding:3px 11px; border-radius:999px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.8px; }
+  .pill.pending { background:rgba(255,179,92,.15); color:#ffb35c; }
+  .pill.approved { background:rgba(63,191,111,.15); color:var(--green); }
+  .pill.rejected { background:rgba(233,67,45,.15); color:var(--red); }
+  .review-actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  .review-actions button.small { margin:0; }
+  .history { margin-top:12px; border-top:1px solid var(--line); padding-top:10px; font-size:12.5px; color:var(--mut); }
+  .history div { margin:3px 0; }
+  .empty { text-align:center; color:var(--mut); padding:30px 10px; font-size:14px; }
+  .hidden { display:none !important; }
+  @media (max-width:640px){ .wrap{padding:18px 12px 48px} .review-actions button.small{flex:1} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <img src="../assets/wheeler-logo-final.png" alt="Wheeler Wrecker Service" onerror="this.style.display='none'">
+    <div><strong>Wheeler Wrecker Service</strong><br><small>Review dashboard — authorized administrators only</small></div>
+  </div>
+
+  <div id="not-configured" class="banner hidden">
+    <strong>Backend not configured.</strong> Wheeler's Supabase project has not been connected yet.
+    See <code>docs/supabase-wheeler-setup.md</code> for the setup steps, then fill in
+    <code>assets/config.js</code> (which is gitignored and never committed).
+  </div>
+
+  <!-- ===== LOGIN ===== -->
+  <section id="login-view" class="card login-card hidden">
+    <h1>Administrator sign in</h1>
+    <p>Sign in with your authorized Wheeler or Syntra Digital Solutions account.</p>
+    <form id="login-form">
+      <label for="email">Email</label>
+      <input id="email" type="email" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+      <button type="submit" id="login-btn">Sign in</button>
+      <p class="status-msg" id="login-status" role="status" aria-live="polite"></p>
+      <p style="font-size:12.5px;color:var(--mut);margin-top:10px">Forgot your password? Use the password-reset link sent to your email, or contact Syntra Digital Solutions.</p>
+    </form>
+  </section>
+
+  <!-- ===== DASHBOARD ===== -->
+  <section id="dash-view" class="hidden">
+    <div class="topbar">
+      <h1>Customer reviews</h1>
+      <div>
+        <span class="who" id="who"></span>
+        <button class="ghost small" id="logout-btn" style="margin-left:10px">Sign out</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><strong id="stat-total">0</strong><span>Total</span></div>
+      <div class="stat pending"><strong id="stat-pending">0</strong><span>Pending</span></div>
+      <div class="stat approved"><strong id="stat-approved">0</strong><span>Approved</span></div>
+      <div class="stat rejected"><strong id="stat-rejected">0</strong><span>Rejected</span></div>
+    </div>
+
+    <div class="filters" id="filters">
+      <button data-filter="all" class="active">All</button>
+      <button data-filter="pending">Pending</button>
+      <button data-filter="approved">Approved</button>
+      <button data-filter="rejected">Rejected</button>
+    </div>
+
+    <div id="review-list"><p class="empty">Loading…</p></div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="../assets/config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

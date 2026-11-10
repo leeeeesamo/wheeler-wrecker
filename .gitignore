@@ -1,0 +1,4 @@
+# assets/config.js is intentionally NOT ignored: it contains only the
+# publishable Supabase anon key + project URL (safe for public GitHub Pages).
+# NEVER put the service_role key or any secret in it — see
+# assets/config.example.js and docs/supabase-wheeler-setup.md.
