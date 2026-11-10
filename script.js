@@ -40,3 +40,35 @@ form?.addEventListener("submit",event=>{
   if(status)status.textContent="Your email application will open with your message. You must send the email there. For urgent service, call dispatch.";
   window.location.href="mailto:"+target+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
 });
+
+// Homepage hero slideshow (Wheeler client photos)
+const heroSlides = document.querySelectorAll(".hero-slide");
+if (heroSlides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let heroIndex = 0;
+  setInterval(() => {
+    heroSlides[heroIndex].classList.remove("active");
+    heroIndex = (heroIndex + 1) % heroSlides.length;
+    heroSlides[heroIndex].classList.add("active");
+  }, 6000);
+}
+
+// Rotate the primary dispatch number in the "Need help now" band.
+// Both numbers stay visible/clickable in the "Or call directly" row at all times.
+const DISPATCH_NUMBERS = [
+  { label: "Bessemer dispatch", number: "(205) 424-3200", tel: "tel:+12054243200", alabaster: false },
+  { label: "Alabaster dispatch", number: "(205) 664-9000", tel: "tel:+12056649000", alabaster: true }
+];
+const helpFeatured = document.getElementById("help-now-featured");
+const helpLocation = document.getElementById("help-now-location");
+const helpNumber = document.getElementById("help-now-number");
+if (helpFeatured && helpLocation && helpNumber && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let dispatchIndex = 0;
+  setInterval(() => {
+    dispatchIndex = (dispatchIndex + 1) % DISPATCH_NUMBERS.length;
+    const d = DISPATCH_NUMBERS[dispatchIndex];
+    helpFeatured.classList.toggle("is-alabaster", d.alabaster);
+    helpFeatured.setAttribute("href", d.tel);
+    helpLocation.textContent = d.label;
+    helpNumber.textContent = d.number;
+  }, 6000);
+}
