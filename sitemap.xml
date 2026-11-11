@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- PRE-LAUNCH: Domain is wheelertowing.com. Pages currently serve noindex,follow and
-     robots.txt disallows crawling. At launch: switch pages to index,follow,
-     change robots.txt to Allow + this sitemap, then submit in Google Search Console. -->
+<!-- PRE-LAUNCH: Domain is wheelertowing.com. Preview pages serve noindex,follow and
+     preview robots.txt allows crawling (so engines can see the noindex). Sitemap URLs
+     already target production. At launch: switch pages to index,follow, keep robots
+     Allow, add the Sitemap line, then submit in Google Search Console. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://wheelertowing.com/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://wheelertowing.com/about.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wheelertowing.com/services.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://wheelertowing.com/fleet.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://wheelertowing.com/reviews.html</loc><lastmod>2026-11-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://wheelertowing.com/reviews/</loc><lastmod>2026-11-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://wheelertowing.com/faq.html</loc><lastmod>2026-11-08</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://wheelertowing.com/vehicle-release.html</loc><lastmod>2026-11-08</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://wheelertowing.com/contact.html</loc><lastmod>2026-11-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
