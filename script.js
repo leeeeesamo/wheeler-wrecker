@@ -233,7 +233,7 @@ if (reviewForm) {
       return;
     }
     if (!reviewFormEnabled) {
-      setStatus("Online review submission is not configured yet. Please call (205) 664-9000 or email info@wheelertowing.com instead.", "error");
+      setStatus("Online review submission is not configured yet. Please call (205) 664-9000 or email hewheeler8@gmail.com instead.", "error");
       return;
     }
 
