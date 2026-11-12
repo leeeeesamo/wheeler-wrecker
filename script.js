@@ -109,38 +109,13 @@ function reviewCard(r) {
   return card;
 }
 
-// Local-only design preview: renders a clearly-labeled SAMPLE review card so
-// the layout can be reviewed before real reviews exist. Only ever runs on
-// localhost — it can never appear on wheelertowing.com or the GitHub Pages
-// preview because the hostname check fails there.
-const SAMPLE_REVIEW = {
-  author: "Jamie R.",
-  rating: 5,
-  text: "Had to get my truck towed after it broke down near Alabaster. The dispatcher was really helpful, and the driver was friendly and professional. They made a stressful situation a lot easier. Definitely appreciate the help!",
-  location: "Alabaster",
-  date: null,
-};
-const isLocalHost = ["localhost", "127.0.0.1", "::1"].includes(location.hostname);
-
-function sampleReviewCard() {
-  // Identical markup/styling to a genuine approved-review card.
-  return reviewCard(SAMPLE_REVIEW);
-}
-
-function sampleReviewNote() {
-  const note = document.createElement("p");
-  note.className = "review-sample-note";
-  note.textContent = "Local preview — fictional sample";
-  return note;
-}
-
 if (approvedWrap && reviewApi) {
   fetch(`${reviewApi}/list-reviews?limit=20`, { headers: { Accept: "application/json" } })
     .then((res) => { if (!res.ok) throw new Error("bad status"); return res.json(); })
     .then((data) => {
       const list = Array.isArray(data.reviews) ? data.reviews : [];
-      if (!list.length && !isLocalHost) {
-        approvedWrap.innerHTML = "";
+      approvedWrap.innerHTML = "";
+      if (!list.length) {
         const p = document.createElement("p");
         p.className = "reviews-empty";
         p.textContent = "No published reviews yet — check back soon, or be the first to share your experience below.";
@@ -150,12 +125,7 @@ if (approvedWrap && reviewApi) {
       const grid = document.createElement("div");
       grid.className = "review-grid";
       for (const r of list) grid.appendChild(reviewCard(r));
-      approvedWrap.innerHTML = "";
       approvedWrap.appendChild(grid);
-      if (isLocalHost) {
-        grid.appendChild(sampleReviewCard());
-        approvedWrap.appendChild(sampleReviewNote());
-      }
     })
     .catch(() => {
       approvedWrap.innerHTML = "";
