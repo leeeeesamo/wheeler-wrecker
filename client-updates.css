@@ -37,12 +37,12 @@
   left: 50%; bottom: 16px; transform: translateX(-50%);
   display: flex; gap: 9px;
 }.slide-dot{
-  width: 10px; height: 10px;
+  width: 24px; height: 24px;
   padding: 0; border: 0; border-radius: 50%;
-  background: rgba(255,255,255,.45);
+  background: radial-gradient(circle closest-side, rgba(255,255,255,.45) 42%, transparent 43%);
   cursor: pointer;
-  transition: background .2s ease, transform .2s ease;
-}.slide-dot.active{ background: #e9432d; transform: scale(1.3); }.slide-dot:focus-visible{ outline: 3px solid #ffa868; outline-offset: 3px; }@media (prefers-reduced-motion: reduce){.slide-viewport .slide{ transition: none; }.slide-arrow, .slide-dot{ transition: none; }
+  transition: background .2s ease;
+}.slide-dot.active{ background: radial-gradient(circle closest-side, #e9432d 42%, transparent 43%); transform: scale(1.3); }.slide-dot:focus-visible{ outline: 3px solid #ffa868; outline-offset: 3px; }@media (prefers-reduced-motion: reduce){.slide-viewport .slide{ transition: none; }.slide-arrow, .slide-dot{ transition: none; }
 }/* ===== Homepage hero: rotating truck photos behind the headline ===== */.premium-hero{
   position: relative;
   min-height: clamp(600px, 92vh, 900px);
@@ -119,3 +119,6 @@
 }@media (max-width: 720px){.final-cta-home .cta-actions .button-light{ width: 100%; min-width: 0; font-size: 17px; }
 }
 @media (max-width: 1023px){.review-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }@media (max-width: 720px){.review-grid{ grid-template-columns: 1fr; } }
+.kicker{ color: #b72d20; }.kicker.dark{ color: #b72d20; }.story-service-card-dark .kicker.dark{ color: #ff9879; }.section-heading a{ color: #b72d20; }.story-service-card a{ color: #b72d20; }.site-nav .button-small{ background: #c93a28; }
+.button-small span{ opacity: 1; }.story-service-card-dark a{ color: #ff9879; }.story-service-index{ color: #6e6e68; }.story-service-card-dark .story-service-index{ color: rgba(255,255,255,.5); }
+.text-cta{ color: #b72d20; }:root{ --muted: #66696f; }.footer-bottom{ color: #9b9ea7; }
